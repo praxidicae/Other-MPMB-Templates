@@ -44,7 +44,7 @@ AddSubClass("wizard", "theurgy", {
 							if (knownSpells.indexOf(domainSpells[i]) == -1) return;
 						}
 // get all the cleric spells, level 1-9
-							var clericSpells = CreateSpellList({"class" : "cleric", level : [1,9]}, false, false, false);
+						var clericSpells = CreateSpellList({"class" : "cleric", level : [1,9]}, false, false, false);
 							spList.extraspells = spList.extraspells.concat(clericSpells);
 						},
 						"When I gain a wizard level after my spellbook already has all the spells of my chosen domain, I can instead select any cleric spell of a level I can cast as one of the spells I gain from levelling up."
