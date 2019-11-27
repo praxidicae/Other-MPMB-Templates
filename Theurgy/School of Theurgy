@@ -11,14 +11,13 @@ RequiredSheetVersion(13);
 SourceList["UA:WR"] = {
 	name : "Unearthed Arcana: Wizard Revisited",
 	abbreviation : "UA:WR",
-	group : "Unearthed Arcana",
+	group : "Unearthed Arcana-Revised",
 	url : "https://media.wizards.com/2017/dnd/downloads/MJ320UAWizardVF2017.pdf",
 	date : "2017/03/20"
 };
 
-// Adds 1 new subclass for the Wizard (with contributions by erickrause)
 
-AddSubClass("wizard", "theurgy", {
+var theTheurgySubclass = AddSubClass("wizard", "theurgy", {
 	regExpSearch : /^((?=.*mystic)(?=.*theurge))|(?=.*(theurgy|theurgist)).*$/i,
 	subname : "Theurgy",
 	source : [["UA:TF", 1], ["UA:WR", 1]],
@@ -36,19 +35,10 @@ AddSubClass("wizard", "theurgy", {
 			calcChanges : {
 				spellList : [
 					function(spList, spName, spType) {
-						if (spName !== "wizard" || spType.indexOf("bonus") !== -1 || !CurrentSpells.wizard.extra || !CurrentSpells.wizard.selectSp || !spList.level || !spList.level[1]) return;
-						var domainSpells = CurrentSpells.wizard.extra;
-// now stop this function if even one of the domain spells is not already in the spellbook
-						var knownSpells = CurrentSpells.wizard.selectSp;
-						for (var i = 0; i < domainSpells.length; i++) {
-							if (knownSpells.indexOf(domainSpells[i]) == -1) return;
-						}
-// get all the cleric spells, level 1-9
-						var clericSpells = CreateSpellList({"class" : "cleric", level : [1,9]}, false, false, false);
-							spList.extraspells = spList.extraspells.concat(clericSpells);
-						},
-						"When I gain a wizard level after my spellbook already has all the spells of my chosen domain, I can instead select any cleric spell of a level I can cast as one of the spells I gain from levelling up."
-					]
+						if (spName !== ["cleric", "wizard"] || spType.indexOf("bonus") !== -1 || !CurrentSpells.wizard.extra || !CurrentSpells.wizard.selectSp || !spList.level || !spList.level[1]) return;
+						var domainSpells = CurrentSpells.wizard.extra
+					}
+				]
 		},
 				choices : [],
 				choiceDependencies : [{
@@ -178,5 +168,3 @@ AddSubClass("wizard", "theurgy", {
 			};
 		};
 	};
-});
-};
