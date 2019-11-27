@@ -39,7 +39,7 @@ var theTheurgySubclass = AddSubClass("wizard", "theurgy", {
 						var domainSpells = CurrentSpells.wizard.extra
 					}
 				]
-		},
+			},
 				choices : [],
 				choiceDependencies : [{
 					feature : "subclassfeature2.3"
