@@ -16,7 +16,7 @@ SourceList["UA:WR"] = {
 	date : "2017/03/20"
 };
 
-
+RunFunctionAtEnd(function() {
 var theTheurgySubclass = AddSubClass("wizard", "theurgy", {
 	regExpSearch : /^((?=.*mystic)(?=.*theurge))|(?=.*(theurgy|theurgist)).*$/i,
 	subname : "Theurgy",
@@ -32,14 +32,7 @@ var theTheurgySubclass = AddSubClass("wizard", "theurgy", {
 			source : [["UA:TF", 2], ["UA:WR", 1]],
 			minlevel : 2,
 			description : "\n   " + "Choose a Cleric Domain using the \"Choose Feature\" button above" + "\n   " + "When I gain a wizard level if I haven't yet learned a spell of a level I know from my chosen domain, I must replace one of the spells I would add to my spellbook with that spell." + "\n   " + "If my spellbook has all the domain spells of a level I can cast, I can choose to select any cleric spell of a level I can cast" + "\n   " + "Other wizards cannot copy cleric spells from my spellbook into their own spellbooks and these spells cannot be used for the Spell Mastery and Signature Spell Wizard Features.",
-			calcChanges : {
-				spellList : [
-					function(spList, spName, spType) {
-						if (spName !== ["cleric", "wizard"] || spType.indexOf("bonus") !== -1 || !CurrentSpells.wizard.extra || !CurrentSpells.wizard.selectSp || !spList.level || !spList.level[1]) return;
-						var domainSpells = CurrentSpells.wizard.extra
-					}
-				]
-			},
+			
 				choices : [],
 				choiceDependencies : [{
 					feature : "subclassfeature2.3"
@@ -168,3 +161,4 @@ var theTheurgySubclass = AddSubClass("wizard", "theurgy", {
 			};
 		};
 	};
+});
